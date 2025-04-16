@@ -178,26 +178,7 @@ export const Config = () => {
                     </Typography>
                     <Box
                         component="form"
-                        onSubmit={(e) => {
-                            e.preventDefault();
-                            emailjs
-                                .sendForm(
-                                    'YOUR_SERVICE_ID',
-                                    'YOUR_TEMPLATE_ID',
-                                    e.target as HTMLFormElement,
-                                    'YOUR_USER_ID'
-                                )
-                                .then(
-                                    (result) => {
-                                        console.log(result.text);
-                                        alert('Message sent successfully!');
-                                    },
-                                    (error) => {
-                                        console.log(error.text);
-                                        alert('Failed to send message. Please try again.');
-                                    }
-                                );
-                        }}
+                        onSubmit={(e) => { }}
                         sx={{
                             width: '100%',
                             maxWidth: 600,
