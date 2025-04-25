@@ -9,7 +9,9 @@ import { Config } from "./Config";
 
 const queryClient = new QueryClient();
 const theme = createTheme({
-
+  typography: {
+    fontFamily: "Roboto, Arial, sans-serif",
+  },
 });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
@@ -22,7 +24,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         </ThemeProvider>
       </QueryClientProvider>
     </BrowserRouter>
-    </React.StrictMode>
-  
+  </React.StrictMode>
  </>
 );

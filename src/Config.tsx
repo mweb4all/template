@@ -3,7 +3,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { Helmet } from 'react-helmet';
+import { TrioCarousel } from './components/TrioCarousel';
+import { Copyright } from './components/Copyright';
 
 // michael.web4all@gmail.com
 
@@ -24,216 +27,257 @@ const infoParagraphs = [
     "Visit us to experience top-notch hair care services."
 ];
 
+const socialLinks = {
+    facebook: "https://facebook.com",
+    twitter: "https://twitter.com",
+    instagram: "https://instagram.com",
+};
+
+const pageTitle = "My Hair App";
+
+const carouselImages = [
+    'https://images.unsplash.com/photo-1599351430140-c70f0250bd70?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://plus.unsplash.com/premium_photo-1683133539091-a57b306742a0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1629397685944-7073f5589754?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+];
+
 export const Config = () => {
     const contactSectionRef = useRef<HTMLDivElement>(null);
     const pricingSectionRef = useRef<HTMLDivElement>(null);
 
+
+
+
+
+
     return (
         <>
+            <Helmet>
+                <title>{pageTitle}</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Helmet>
             <AppBar position="static" color="default" sx={{ backgroundColor: "grey"}}>
-                <Toolbar>
-                    <Typography variant="h6" sx={{ flexGrow: 1, color: "white"}}>
-                        My Hair
-                    </Typography>
-                    <Stack flexDirection="row" sx={{backgroundColor: "white", border: "3px solid darkgrey"}}>
-                        <IconButton color="inherit" href="https://facebook.com" target="_blank">
-                            <FacebookIcon />
-                        </IconButton>
-                        <IconButton color="inherit" href="https://twitter.com" target="_blank">
-                            <TwitterIcon />
-                        </IconButton>
-                        <IconButton color="inherit" href="https://instagram.com" target="_blank">
-                            <InstagramIcon />
-                        </IconButton>
-                    </Stack>
-                </Toolbar>
+            <Toolbar>
+                <Typography variant="h6" sx={{ flexGrow: 1, color: "white"}}>
+                {pageTitle}
+                </Typography>
+                <Stack flexDirection="row" sx={{ backgroundColor: "white", border: "3px solid darkgrey" }}>
+                {socialLinks.facebook && (
+                    <IconButton color="inherit" href={socialLinks.facebook} target="_blank">
+                    <FacebookIcon />
+                    </IconButton>
+                )}
+                {socialLinks.twitter && (
+                    <IconButton color="inherit" href={socialLinks.twitter} target="_blank">
+                    <TwitterIcon />
+                    </IconButton>
+                )}
+                {socialLinks.instagram && (
+                    <IconButton color="inherit" href={socialLinks.instagram} target="_blank">
+                    <InstagramIcon />
+                    </IconButton>
+                )}
+                </Stack>
+            </Toolbar>
             </AppBar>
             <AppBar position="static" sx={{ backgroundColor: "white"}}>
-                <Toolbar>
-                    <Stack flexDirection="row" justifyContent="flex-end" sx={{width: "100%"}}>
-                        <Button
-                            sx={{color: "black"}}
-                            onClick={() =>
-                                pricingSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
-                            }
-                        >
-                            Pricing
-                        </Button>
-                        <Button
-                            sx={{color: "black"}}
-                            onClick={() =>
-                                contactSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
-                            }
-                        >
-                            Contact Us
-                        </Button>
-                    </Stack>
-                </Toolbar>
+            <Toolbar>
+                <Stack flexDirection="row" justifyContent="flex-end" sx={{width: "100%"}}>
+                <Button
+                    sx={{color: "black"}}
+                    onClick={() =>
+                    pricingSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
+                    }
+                >
+                    Pricing
+                </Button>
+                <Button
+                    sx={{color: "black"}}
+                    onClick={() =>
+                    contactSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
+                    }
+                >
+                    Contact Us
+                </Button>
+                </Stack>
+            </Toolbar>
             </AppBar> 
             <Box
+            sx={{
+                height: '70vh',
+                backgroundImage: 'url(https://images.unsplash.com/photo-1599351430140-c70f0250bd70?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}
+            >
+            <Typography
+                variant="h3"
                 sx={{
-                    height: '70vh',
-                    backgroundImage: 'url(https://images.unsplash.com/photo-1599351430140-c70f0250bd70?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                color: 'white',
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
                 }}
             >
-                <Typography
-                    variant="h3"
-                    sx={{
-                        color: 'white',
-                        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
-                    }}
-                >
-                    Welcome to My App
-                </Typography>
+                Welcome to My App
+            </Typography>
             </Box>
             <Box sx={{ mt: 8 }}>
-                <Stack
-                    ref={pricingSectionRef}
-                    sx={{
-                        height: 'max-content',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: '#f5f5f5',
-                        padding: 4,
-                    }}
-                >
-                    <Typography variant="h4" sx={{ mb: 4 }}>
-                        Pricing Section
+            <Stack
+                ref={pricingSectionRef}
+                sx={{
+                height: 'max-content',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#f5f5f5',
+                padding: 4,
+                }}
+            >
+                <Typography variant="h4" sx={{ mb: 4 }}>
+                Pricing Section
+                </Typography>
+                <Stack sx={{alignItems: 'center',  width: '80%', textAlign: 'center', mb: 4 }}>
+                {infoParagraphs.map((paragraph, index) => (
+                    <Typography key={index} variant="body1" sx={{ mb: index < infoParagraphs.length - 1 ? 2 : 0 }}>
+                    {paragraph}
                     </Typography>
-                    <Stack sx={{alignItems: 'center',  width: '80%', textAlign: 'center', mb: 4 }}>
-                        {infoParagraphs.map((paragraph, index) => (
-                            <Typography key={index} variant="body1" sx={{ mb: index < infoParagraphs.length - 1 ? 2 : 0 }}>
-                                {paragraph}
-                            </Typography>
-                        ))}
-                    <Stack
-                        sx={{
-                            width: '60%',
-                            backgroundColor: 'white',
-                            border: '1px solid #ccc',
-                            borderRadius: 2,
-                            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                            padding: 3,
-                        }}
-                    >
-                        <Box sx={{ overflowX: 'auto' }}>
-                            <Table>
-                                <TableHead>
-                                    <TableRow>
-                                        {tableData.headers.map((header, index) => (
-                                            <TableCell
-                                                key={index}
-                                                align={index === 0 ? 'left' : 'right'}
-                                                sx={{ fontWeight: 'bold', borderBottom: '2px solid #ccc' }}
-                                            >
-                                                {header}
-                                            </TableCell>
-                                        ))}
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {tableData.services.map((service, index) => (
-                                        <TableRow key={index}>
-                                            <TableCell
-                                                sx={{
-                                                    borderBottom: '1px solid #eee',
-                                                }}
-                                            >
-                                                {service.name}
-                                            </TableCell>
-                                            <TableCell
-                                                align="right"
-                                                sx={{
-                                                    borderBottom: '1px solid #eee',
-                                                }}
-                                            >
-                                                {service.price}
-                                            </TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </Box>
-
-                    </Stack>
-                    </Stack>               
-                </Stack>
+                ))}
                 <Stack
-                    ref={contactSectionRef}
-                    sx={{
-                        height: 'max-content',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: '#e0f7fa',
-                        padding: 4,
-                    }}
+                sx={{
+                    width: '60%',
+                    backgroundColor: 'white',
+                    border: '1px solid #ccc',
+                    borderRadius: 2,
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                    padding: 3,
+                }}
                 >
-                    <Typography variant="h4" sx={{ mb: 4 }}>
-                        Contact Us
-                    </Typography>
-                    <Box
-                        component="form"
-                        onSubmit={(e) => { }}
-                        sx={{
-                            width: '100%',
-                            maxWidth: 600,
-                            backgroundColor: 'white',
-                            borderRadius: 2,
-                            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                            padding: 3,
-                        }}
-                    >
-                        <Stack spacing={2}>
-                            <input
-                                type="text"
-                                name="user_name"
-                                placeholder="Your Name"
-                                required
-                                style={{
-                                    width: '100%',
-                                    padding: '10px',
-                                    borderRadius: '4px',
-                                    border: '1px solid #ccc',
-                                }}
-                            />
-                            <input
-                                type="email"
-                                name="user_email"
-                                placeholder="Your Email"
-                                required
-                                style={{
-                                    width: '100%',
-                                    padding: '10px',
-                                    borderRadius: '4px',
-                                    border: '1px solid #ccc',
-                                }}
-                            />
-                            <textarea
-                                name="message"
-                                placeholder="Your Message"
-                                required
-                                rows={4}
-                                style={{
-                                    width: '100%',
-                                    padding: '10px',
-                                    borderRadius: '4px',
-                                    border: '1px solid #ccc',
-                                }}
-                            />
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                color="primary"
-                                sx={{ alignSelf: 'flex-end' }}
+                <Box sx={{ overflowX: 'auto' }}>
+                    <Table>
+                    <TableHead>
+                        <TableRow>
+                        {tableData.headers.map((header, index) => (
+                            <TableCell
+                            key={index}
+                            align={index === 0 ? 'left' : 'right'}
+                            sx={{ fontWeight: 'bold', borderBottom: '2px solid #ccc' }}
                             >
-                                Send Message
-                            </Button>
-                        </Stack>
+                            {header}
+                            </TableCell>
+                        ))}
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {tableData.services.map((service, index) => (
+                        <TableRow key={index}>
+                            <TableCell
+                            sx={{
+                                borderBottom: '1px solid #eee',
+                            }}
+                            >
+                            {service.name}
+                            </TableCell>
+                            <TableCell
+                            align="right"
+                            sx={{
+                                borderBottom: '1px solid #eee',
+                            }}
+                            >
+                            {service.price}
+                            </TableCell>
+                        </TableRow>
+                        ))}
+                    </TableBody>
+                    </Table>
+                </Box>
+
+                </Stack>
+                </Stack>               
+            </Stack>
+            <Box
+                sx={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    my: 1,
+                }}
+            >
+                <TrioCarousel carouselImages={carouselImages}/>
+            </Box>
+            <Stack
+                ref={contactSectionRef}
+                sx={{
+                height: 'max-content',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#e0f7fa',
+                padding: 4,
+                }}
+            >
+                <Typography variant="h4" sx={{ mb: 4 }}>
+                Contact Us
+                </Typography>
+                <Box
+                component="form"
+                onSubmit={(e) => { }}
+                sx={{
+                    width: '100%',
+                    maxWidth: 600,
+                    backgroundColor: 'white',
+                    borderRadius: 2,
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                    padding: 3,
+                }}
+                >
+                <Stack spacing={2}>
+                    <>
+                        <input
+                            type="text"
+                            name="user_name"
+                            placeholder="Your Name"
+                            required
+                            style={{
+                                width: '100%',
+                                padding: '10px',
+                                borderRadius: '4px',
+                                border: '1px solid #ccc',
+                            }}
+                        />
+                        <input
+                            type="email"
+                            name="user_email"
+                            placeholder="Your Email"
+                            required
+                            style={{
+                                width: '100%',
+                                padding: '10px',
+                                borderRadius: '4px',
+                                border: '1px solid #ccc',
+                            }}
+                        />
+                        <textarea
+                            name="message"
+                            placeholder="Your Message"
+                            required
+                            rows={4}
+                            style={{
+                                width: '100%',
+                                padding: '10px',
+                                borderRadius: '4px',
+                                border: '1px solid #ccc',
+                            }}
+                        />
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            sx={{ alignSelf: 'flex-end' }}
+                        >
+                            Send Message
+                        </Button>
+                    </>
+                </Stack>
                     </Box>
                     <Box
                         sx={{
@@ -257,6 +301,7 @@ export const Config = () => {
                     </Box>
                 </Stack>
             </Box>
+            <Copyright />
         </>
     );
 };
