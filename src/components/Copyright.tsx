@@ -7,24 +7,30 @@ interface CopyrightProps {
   sx?: SxProps<Theme>;
 }
 
-export const Copyright = ({
-  websiteName = "Web4All",  sx
-}: CopyrightProps) => 
-   <Stack alignItems={"center"} justifyContent="center" sx={{
+export const Copyright = ({ websiteName = "Web4All", sx }: CopyrightProps) => (
+  <Stack
+    alignItems={"center"}
+    justifyContent="center"
+    sx={{
       minHeight: rem(50),
       lineHeight: rem(100),
       backgroundColor: "black",
       ...sx,
-    }}>
-    <Typography sx={{color: "White"}} variant="body2" color="text.secondary" align="center" >
+    }}
+  >
+    <Typography
+      sx={{ color: "White" }}
+      variant="body2"
+      color="text.secondary"
+      align="center"
+    >
       {"Copyright © "}
-      <StyledNavLink to={"/"}>
-        {websiteName}
-      </StyledNavLink>{" "}
+      <StyledNavLink to={"/"}>{websiteName}</StyledNavLink>{" "}
       {new Date().getFullYear()}
       {"."}
     </Typography>
-  </Stack>;
+  </Stack>
+);
 
 const StyledNavLink = styled(NavLink)(({ theme }) => ({
   color: "white",
