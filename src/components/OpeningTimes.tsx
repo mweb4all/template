@@ -43,7 +43,7 @@ export const OpeningTimes = ({sx, openingTimes}: OpeningTimesProps) => {
                 </TableHead>
                 <TableBody>
                     {Object.entries(openingTimes).map(([day, times], index) => (
-                        <TableRow key={index}>
+                        <TableRow sx={{"td": { py:1}}} key={index}>
                             <TableCell sx={{ borderBottom: "1px solid #eee" }}>{day}</TableCell>
                             <TableCell
                                 align="center"

@@ -4,12 +4,16 @@ import { Box, SxProps } from "@mui/material";
 export interface CarouselProps {
   carouselImages: Array<string>;
   indexToStart?: number;
+  offset?: number;
   sx?: SxProps;
 }
+
+const time = 6000;
 
 export const Carousel = ({
   carouselImages,
   indexToStart = 0,
+  offset= 0,
   sx,
 }: CarouselProps) => {
   const [index, setIndex] = useState(indexToStart);
@@ -17,10 +21,13 @@ export const Carousel = ({
   const trackRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prevIndex) => prevIndex + 1);
-    }, 2000);
-    return () => clearInterval(interval);
+    const timeout = setTimeout(() => {
+      const interval = setInterval(() => {
+        setIndex((prevIndex) => prevIndex + 1);
+      }, time);
+      return () => clearInterval(interval);
+    }, offset); // Delay start by 3000ms (3 seconds)
+    return () => clearTimeout(timeout);
   }, []);
 
   useEffect(() => {

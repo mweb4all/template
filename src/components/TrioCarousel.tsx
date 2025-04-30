@@ -24,16 +24,19 @@ export const TrioCarousel = ({ carouselImages }: TrioCarouselProps) => {
             sx={{ gridArea: "1/1/2/2" }}
             carouselImages={carouselImages}
             indexToStart={0}
+            offset={1000}
           />
           <Carousel
             sx={{ gridArea: "2/2/3/3" }}
             carouselImages={carouselImages}
             indexToStart={1}
+            offset={4500}
           />
           <Carousel
             sx={{ gridArea: "1/3/2/4" }}
             carouselImages={carouselImages}
             indexToStart={2}
+            offset={3000}
           />
         </Box>
       )}

@@ -2,7 +2,6 @@ import {
   AppBar,
   Box,
   Button,
-  IconButton,
   Stack,
   Table,
   TableBody,
@@ -12,11 +11,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { Helmet } from "react-helmet";
 import { TrioCarousel } from "./components/TrioCarousel";
 import { Copyright } from "./components/Copyright";
@@ -24,8 +19,12 @@ import { SocialMediaProps, SocialMedia } from "./components/SocialMedia";
 import { OpeningTimes } from "./components/OpeningTimes";
 import { rem } from "polished";
 import { ContactUsForm } from "./components/ContactUsForm";
+import { black, blue, cream } from "./components/Colours";
+import { LinkButton } from "./components/LinkButton";
 
 // michael.web4all@gmail.com
+
+const welcomeMessage = "Welcome to Harlands Hair Salon!";
 
 const tableData = {
   headers: ["Service", "Price"],
@@ -71,6 +70,8 @@ const carouselImages = [
 const googleMap =
   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2347.8939286995587!2d-1.1184421000000002!3d53.951391799999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48793120de033f53%3A0xf59f6c43edee450c!2s225A%20Hamilton%20Dr%20W%2C%20Acomb%2C%20York%20YO24%204PL!5e0!3m2!1sen!2suk!4v1745663389784!5m2!1sen!2suk";
 
+  const shadowOffset = 2;
+
 export const Config = () => {
   const contactSectionRef = useRef<HTMLDivElement>(null);
   const pricingSectionRef = useRef<HTMLDivElement>(null);
@@ -84,7 +85,7 @@ export const Config = () => {
       <AppBar
         position="static"
         color="default"
-        sx={{ backgroundColor: "grey" }}
+        sx={{ backgroundColor: blue }}
       >
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1, color: "white" }}>
@@ -93,71 +94,70 @@ export const Config = () => {
           <SocialMedia socialLinks={socialLinks} />
         </Toolbar>
       </AppBar>
-      <AppBar position="static" sx={{ backgroundColor: "white" }}>
+      <AppBar position="static" sx={{ backgroundColor: "#DFD0B8" }}>
         <Toolbar>
           <Stack
             flexDirection="row"
             justifyContent="flex-end"
             sx={{ width: "100%" }}
           >
-            <Button
-              sx={{ color: "black" }}
-              onClick={() =>
-                pricingSectionRef.current?.scrollIntoView({
-                  behavior: "smooth",
-                })
-              }
-            >
-              Pricing
-            </Button>
-            <Button
-              sx={{ color: "black" }}
-              onClick={() =>
-                contactSectionRef.current?.scrollIntoView({
-                  behavior: "smooth",
-                })
-              }
-            >
-              Contact Us
-            </Button>
+            <LinkButton ref={pricingSectionRef} title="Pricing" />
+            <LinkButton ref={contactSectionRef} title="Contact Us" />
           </Stack>
         </Toolbar>
       </AppBar>
+    <Box
+      sx={{
+        height: "70vh",
+        backgroundImage:
+        "url(https://images.unsplash.com/photo-1599351430140-c70f0250bd70?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+      }}
+    >
       <Box
         sx={{
-          height: "70vh",
-          backgroundImage:
-            "url(https://images.unsplash.com/photo-1599351430140-c70f0250bd70?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0, 0, 0, 0.2)",
+        zIndex: 1,
+        }}
+      />
+      <Typography
+        variant="h1"
+        sx={{
+          fontSize: "7rem",
+          fontWeight: "bold",
+          color: "white",
+          fontFamily: "Dancing Script", 
+          textShadow: `-${shadowOffset}px -${shadowOffset}px 0 #000, ${shadowOffset}px -${shadowOffset}px 0 #000, -${shadowOffset}px ${shadowOffset}px 0 #000, ${shadowOffset}px ${shadowOffset}px 0 #000;`,
+          zIndex: 2, // Ensure text is above the overlay
         }}
       >
-        <Typography
-          variant="h3"
-          sx={{
-            color: "white",
-            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-          }}
-        >
-          Welcome to My App
-        </Typography>
-      </Box>
-      <Box sx={{ mt: 8 }}>
+        {welcomeMessage}
+      </Typography>
+    </Box>
+      <Box sx={{ mt: 2 }}>
         <Stack
           ref={pricingSectionRef}
           sx={{
             height: "max-content",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "#f5f5f5",
+            backgroundColor: cream,
             padding: 4,
+            color: black
           }}
         >
-          <Typography variant="h4" sx={{ mb: 4 }}>
-            Pricing Section
+          <Typography variant="h4" sx={{ mb: 4,  }}>
+            Our Prices
           </Typography>
           <Stack
             sx={{
@@ -171,7 +171,7 @@ export const Config = () => {
               <Typography
                 key={index}
                 variant="body1"
-                sx={{ mb: index < infoParagraphs.length - 1 ? 2 : 0 }}
+                sx={{ mb: index < infoParagraphs.length - 1 ? 1 : 0 }}
               >
                 {paragraph}
               </Typography>
@@ -246,11 +246,11 @@ export const Config = () => {
           sx={{
             height: "max-content",
             justifyContent: "center",
-            backgroundColor: "#e0f7fa",
+            backgroundColor: cream,
             padding: 4,
           }}
         >
-            <Stack flexDirection={{ xs: "column", md: "row" }} gap={2} >
+            <Stack flexDirection={{ xs: "column", md: "row" }} justifyContent={"center"} gap={2} >
                 <ContactUsForm sx={{flex: 1}}/>
                 <OpeningTimes sx={{flex: 1}} openingTimes={openingTimes} />
             </Stack>
