@@ -85,21 +85,27 @@ export const Config = () => {
       <AppBar
         position="static"
         color="default"
-        sx={{ backgroundColor: blue }}
+        sx={{ backgroundColor: "white" }}
       >
         <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1, color: "white" }}>
+          <Typography variant="h6" sx={{textAlign: "center", flexGrow: 1, color: black, fontFamily: "Dancing Script", fontSize: "2rem", fontWeight: "bold" }}>
             {pageTitle}
           </Typography>
           <SocialMedia socialLinks={socialLinks} />
         </Toolbar>
       </AppBar>
-      <AppBar position="static" sx={{ backgroundColor: "#DFD0B8" }}>
-        <Toolbar>
+      <AppBar position="static" sx={{background: "white", borderTop: `${rem(2)} solid ${cream}`}}>
+        <Toolbar sx={{display: "flex", justifyContent: "space-between"}}>
+            <Typography
+             component="a"
+            href="tel:0987391238"
+            sx={{ color: black, fontWeight: "bold", fontSize: "1.3rem", textDecoration: "none" }}
+            >
+            Book now: 09873 91238
+            </Typography>
           <Stack
             flexDirection="row"
             justifyContent="flex-end"
-            sx={{ width: "100%" }}
           >
             <LinkButton ref={pricingSectionRef} title="Pricing" />
             <LinkButton ref={contactSectionRef} title="Contact Us" />
@@ -151,20 +157,22 @@ export const Config = () => {
             height: "max-content",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: cream,
-            padding: 4,
+            borderTop: `${rem(4)} solid ${cream}`,
+            borderBottom: `${rem(4)} solid ${cream}`,
+            backgroundColor: "white",
+            px: 4,
+            py:3, 
             color: black
           }}
         >
-          <Typography variant="h4" sx={{ mb: 4,  }}>
+          <Typography variant="h4" sx={{ mb: 2}}>
             Our Prices
           </Typography>
           <Stack
             sx={{
               alignItems: "center",
               width: "80%",
-              textAlign: "center",
-              mb: 4,
+              textAlign: "center"
             }}
           >
             {infoParagraphs.map((paragraph, index) => (
@@ -235,7 +243,7 @@ export const Config = () => {
             width: "100%",
             display: "flex",
             justifyContent: "center",
-            my: 1,
+            my: 3,
           }}
         >
           <TrioCarousel carouselImages={carouselImages} />

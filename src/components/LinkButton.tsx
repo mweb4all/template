@@ -10,26 +10,28 @@ interface LinkButtonProps {
 export const LinkButton = forwardRef<HTMLElement, LinkButtonProps>(({title}, ref) => (
         <Button
               sx={{
-                color: blue,
-                fontWeight: "bold",
-                width: rem(120),
-                border: `${rem(2)} solid black`,
-                borderRadius: 2,
-                backgroundColor: "white",
-                ml: 2,
-                height: rem(40),
-                "&:hover": {
-                  fontSize: rem(15),
-                  backgroundColor: "white",
-                },
+          color: blue,
+          fontWeight: "bold",
+          fontSize: "1.2rem",
+          width: rem(140),
+          border: `${rem(2)} solid black`,
+          borderRadius: 2,
+          backgroundColor: "white",
+          ml: 2,
+          height: rem(40),
+          textTransform: "capitalize",
+          "&:hover": {
+            fontSize: rem(15),
+            backgroundColor: "white",
+          },
               }}
               onClick={() => {
-                if (ref && typeof ref !== "function" && ref.current) {
-                    ref.current.scrollIntoView({
-                      behavior: "smooth",
-                    });
-                }
-                }
+          if (ref && typeof ref !== "function" && ref.current) {
+              ref.current.scrollIntoView({
+          behavior: "smooth",
+              });
+          }
+          }
               }
             >
               {title}

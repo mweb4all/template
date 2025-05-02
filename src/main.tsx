@@ -9,6 +9,24 @@ import { Config } from "./Config";
 const theme = createTheme({
   typography: {
     fontFamily: "Roboto, Arial, sans-serif",
+    body1: {
+      fontSize: "0.875rem", // Default for mobile
+      [createTheme().breakpoints.up("sm")]: {
+        fontSize: "1rem", // Tablet
+      },
+      [createTheme().breakpoints.up("md")]: {
+        fontSize: "1.125rem", // Desktop
+      },
+    },
+    body2: {
+      fontSize: "0.75rem", // Default for mobile
+      [createTheme().breakpoints.up("sm")]: {
+        fontSize: "0.875rem", // Tablet
+      },
+      [createTheme().breakpoints.up("md")]: {
+        fontSize: "1rem", // Desktop
+      },
+    },
   },
 });
 
