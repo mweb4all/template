@@ -10,7 +10,7 @@ export const TrioCarousel = ({ carouselImages }: TrioCarouselProps) => {
   return (
     <>
       {isTablet ? (
-        <Carousel carouselImages={carouselImages} indexToStart={0} /> //carouselImages={carouselImages}/>
+        <Carousel carouselImages={carouselImages} indexToStart={0} />
       ) : (
         <Box
           sx={{

@@ -13,7 +13,7 @@ const time = 6000;
 export const Carousel = ({
   carouselImages,
   indexToStart = 0,
-  offset= 0,
+  offset = 0,
   sx,
 }: CarouselProps) => {
   const [index, setIndex] = useState(indexToStart);

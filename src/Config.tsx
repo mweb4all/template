@@ -10,6 +10,7 @@ import {
   TableRow,
   Toolbar,
   Typography,
+  LinearProgress
 } from "@mui/material";
 import { useRef } from "react";
 import { Helmet } from "react-helmet";
@@ -21,10 +22,12 @@ import { rem } from "polished";
 import { ContactUsForm } from "./components/ContactUsForm";
 import { black, blue, cream } from "./components/Colours";
 import { LinkButton } from "./components/LinkButton";
+import { useState, useEffect } from "react";
+import ReactLoading from 'react-loading';
 
 // michael.web4all@gmail.com
 
-const welcomeMessage = "Welcome to Harlands Hair Salon!";
+const welcomeMessage = "Welcome to Harlands Hair Salon";
 
 const tableData = {
   headers: ["Service", "Price"],
@@ -44,37 +47,67 @@ const infoParagraphs = [
 ];
 
 const socialLinks: SocialMediaProps["socialLinks"] = {
-    facebook: "https://facebook.com",
-    twitter: "https://twitter.com",
-    instagram: "https://instagram.com",
+  facebook: "https://facebook.com",
+  twitter: "https://twitter.com",
+  instagram: "https://instagram.com",
 };
 
 const openingTimes = {
-    Monday: { open: "09:00", close: "18:00" },
-    Tuesday: { open: "09:00", close: "18:00" },
-    Wednesday: { open: "09:00", close: "18:00" },
-    Thursday: { open: "09:00", close: "18:00" },
-    Friday: { open: "09:00", close: "18:00" },
-    Saturday: { open: "10:00", close: "16:00" },
-    Sunday: { open: "Closed", close: "Closed" },
+  Monday: { open: "09:00", close: "18:00" },
+  Tuesday: { open: "09:00", close: "18:00" },
+  Wednesday: { open: "09:00", close: "18:00" },
+  Thursday: { open: "09:00", close: "18:00" },
+  Friday: { open: "09:00", close: "18:00" },
+  Saturday: { open: "10:00", close: "16:00" },
+  Sunday: { open: "Closed", close: "Closed" },
 };
 
 const pageTitle = "Harlands Hair Salon";
 
+const mainBackgroundImage = "url(https://images.unsplash.com/photo-1587045525473-4861b1f9b5b2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D_)";
+ "url(https://images.unsplash.com/photo-1595475884562-073c30d45670?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)";
+
+"url(https://images.unsplash.com/photo-1599351430140-c70f0250bd70?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)";
+
 const carouselImages = [
-  "https://images.unsplash.com/photo-1599351430140-c70f0250bd70?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://plus.unsplash.com/premium_photo-1683133539091-a57b306742a0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1629397685944-7073f5589754?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "/harlandshair1.jpg",
+  "/harlandstudio.jpg",
+  "/harlandshair2.jpg",
+  "/harlandsMain.jpg",
+  "/harlandshair3.jpg",
 ];
 
 const googleMap =
   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2347.8939286995587!2d-1.1184421000000002!3d53.951391799999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48793120de033f53%3A0xf59f6c43edee450c!2s225A%20Hamilton%20Dr%20W%2C%20Acomb%2C%20York%20YO24%204PL!5e0!3m2!1sen!2suk!4v1745663389784!5m2!1sen!2suk";
 
-  const shadowOffset = 2;
+const shadowOffset = 2;
 
 export const Config = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const contactSectionRef = useRef<HTMLDivElement>(null);
   const pricingSectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <LinearProgress
+          sx={{ width: rem(200), height: rem(10), borderRadius: 5, backgroundColor: "black", ".MuiLinearProgress-bar": {backgroundColor: "grey"}}}
+          />
+      </Box>
+    );
+  }
 
   return (
     <>
@@ -88,68 +121,97 @@ export const Config = () => {
         sx={{ backgroundColor: "white" }}
       >
         <Toolbar>
-          <Typography variant="h6" sx={{textAlign: "center", flexGrow: 1, color: black, fontFamily: "Dancing Script", fontSize: "2rem", fontWeight: "bold" }}>
+          <Typography
+            variant="h6"
+            sx={{
+              textAlign: "center",
+              mr: 0.5,
+              flexGrow: 1,
+              color: black,
+              fontFamily: "Dancing Script",
+              fontSize: { xs: "1.4rem", md: "2.5rem" },
+              fontWeight: "bold",
+            }}
+          >
             {pageTitle}
           </Typography>
           <SocialMedia socialLinks={socialLinks} />
         </Toolbar>
       </AppBar>
-      <AppBar position="static" sx={{background: "white", borderTop: `${rem(2)} solid ${cream}`}}>
-        <Toolbar sx={{display: "flex", justifyContent: "space-between"}}>
+      <AppBar
+        position="static"
+        sx={{ background: "white", borderTop: `${rem(2)} solid ${cream}` }}
+      >
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Stack sx={{ flexDirection: { xs: "column", md: "row" } }}>
             <Typography
-             component="a"
-            href="tel:0987391238"
-            sx={{ color: black, fontWeight: "bold", fontSize: "1.3rem", textDecoration: "none" }}
+              sx={{
+                color: black,
+                fontWeight: "bold",
+                mr: 0.5,
+                fontSize: { xs: "0.8rem", md: "1.3rem" },
+                textDecoration: "none",
+              }}
             >
-            Book now: 09873 91238
+              Book now:
             </Typography>
-          <Stack
-            flexDirection="row"
-            justifyContent="flex-end"
-          >
+            <Typography
+              component="a"
+              href="tel:0987391238"
+              sx={{
+                color: black,
+                fontWeight: "bold",
+                fontSize: { xs: "0.8rem", md: "1.3rem" },
+                textDecoration: "none",
+              }}
+            >
+              09873 91238
+            </Typography>
+          </Stack>
+          <Stack flexDirection="row" justifyContent="flex-end">
             <LinkButton ref={pricingSectionRef} title="Pricing" />
             <LinkButton ref={contactSectionRef} title="Contact Us" />
           </Stack>
         </Toolbar>
       </AppBar>
-    <Box
-      sx={{
-        height: "70vh",
-        backgroundImage:
-        "url(https://images.unsplash.com/photo-1599351430140-c70f0250bd70?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        position: "relative",
-      }}
-    >
       <Box
         sx={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        backgroundColor: "rgba(0, 0, 0, 0.2)",
-        zIndex: 1,
-        }}
-      />
-      <Typography
-        variant="h1"
-        sx={{
-          fontSize: "7rem",
-          fontWeight: "bold",
-          color: "white",
-          fontFamily: "Dancing Script", 
-          textShadow: `-${shadowOffset}px -${shadowOffset}px 0 #000, ${shadowOffset}px -${shadowOffset}px 0 #000, -${shadowOffset}px ${shadowOffset}px 0 #000, ${shadowOffset}px ${shadowOffset}px 0 #000;`,
-          zIndex: 2, // Ensure text is above the overlay
+          height: { xs: rem(300), md: rem(500) },
+          backgroundImage: mainBackgroundImage,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
         }}
       >
-        {welcomeMessage}
-      </Typography>
-    </Box>
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.2)",
+            zIndex: 1,
+          }}
+        />
+        <Typography
+          variant="h1"
+          sx={{
+            textAlign: "center",
+            fontWeight: "bold",
+            color: "white",
+            fontSize: { xs: "2rem", md: "3rem", lg: "5rem" },
+            fontFamily: "Lexend",
+            textShadow: `-${shadowOffset}px -${shadowOffset}px 0 #000, ${shadowOffset}px -${shadowOffset}px 0 #000, -${shadowOffset}px ${shadowOffset}px 0 #000, ${shadowOffset}px ${shadowOffset}px 0 #000;`,
+            zIndex: 2, // Ensure text is above the overlay
+          }}
+        >
+          {welcomeMessage}
+        </Typography>
+      </Box>
       <Box sx={{ mt: 2 }}>
         <Stack
           ref={pricingSectionRef}
@@ -160,33 +222,28 @@ export const Config = () => {
             borderTop: `${rem(4)} solid ${cream}`,
             borderBottom: `${rem(4)} solid ${cream}`,
             backgroundColor: "white",
-            px: 4,
-            py:3, 
-            color: black
+            px: { xs: 1, md: 4 },
+            py: { xs: 2, md: 3 },
+            color: black,
           }}
         >
-          <Typography variant="h4" sx={{ mb: 2}}>
+          <Typography variant="h4" sx={{ mb: 2 }}>
             Our Prices
           </Typography>
           <Stack
             sx={{
               alignItems: "center",
-              width: "80%",
-              textAlign: "center"
+              textAlign: "center",
             }}
           >
             {infoParagraphs.map((paragraph, index) => (
-              <Typography
-                key={index}
-                variant="body1"
-                sx={{ mb: index < infoParagraphs.length - 1 ? 1 : 0 }}
-              >
+              <Typography key={index} variant="body1" sx={{ mb: 1 }}>
                 {paragraph}
               </Typography>
             ))}
             <Stack
               sx={{
-                width: "60%",
+                width: { xs: "85%", md: rem(800) },
                 backgroundColor: "white",
                 border: "1px solid #ccc",
                 borderRadius: 2,
@@ -195,7 +252,7 @@ export const Config = () => {
               }}
             >
               <Box sx={{ overflowX: "auto" }}>
-                <Table>
+                <Table sx={{"td, th": {p: {xs: 1.5, md: 2}}}}>
                   <TableHead>
                     <TableRow>
                       {tableData.headers.map((header, index) => (
@@ -214,7 +271,7 @@ export const Config = () => {
                   </TableHead>
                   <TableBody>
                     {tableData.services.map((service, index) => (
-                      <TableRow key={index}>
+                      <TableRow key={index} >
                         <TableCell
                           sx={{
                             borderBottom: "1px solid #eee",
@@ -240,6 +297,17 @@ export const Config = () => {
         </Stack>
         <Box
           sx={{
+            margin: "auto",
+            my: 1,
+            width: {xs: "80%", lg: "1200px"},
+            aspectRatio: "2 / 0.8",
+            backgroundImage: `url(/harlandsCollage.jpg)`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        ></Box>
+        {/* <Box
+          sx={{
             width: "100%",
             display: "flex",
             justifyContent: "center",
@@ -247,7 +315,7 @@ export const Config = () => {
           }}
         >
           <TrioCarousel carouselImages={carouselImages} />
-        </Box>
+        </Box> */}
 
         <Stack
           ref={contactSectionRef}
@@ -255,13 +323,17 @@ export const Config = () => {
             height: "max-content",
             justifyContent: "center",
             backgroundColor: cream,
-            padding: 4,
+            padding: {xs: 2, md: 3, lg: 4},
           }}
         >
-            <Stack flexDirection={{ xs: "column", md: "row" }} justifyContent={"center"} gap={2} >
-                <ContactUsForm sx={{flex: 1}}/>
-                <OpeningTimes sx={{flex: 1}} openingTimes={openingTimes} />
-            </Stack>
+          <Stack
+            flexDirection={{ xs: "column", md: "row" }}
+            justifyContent={"center"}
+            gap={2}
+          >
+            <ContactUsForm sx={{ flex: 1 }} />
+            <OpeningTimes sx={{ flex: 1 }} openingTimes={openingTimes} />
+          </Stack>
           <Box
             sx={{
               width: "100%",
