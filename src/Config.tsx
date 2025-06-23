@@ -41,7 +41,7 @@ const tableData = {
 };
 
 const infoParagraphs = [
-  "A friendly, vibrant York salon where style meets affordability—expert Hair & Beauty treatments in a relaxed, welcoming space.",
+  "Our friendly, vibrant York salon where style meets affordability—expert Hair & Beauty treatments in a relaxed, welcoming space.",
   "Our experienced stylists ensure you get the best treatment.",
   "We also have free parking!",
 ];
@@ -63,6 +63,7 @@ const openingTimes = {
 };
 
 const pageTitle = "Harlands Hair Salon";
+const secondaryTitle = "Acomb - York"
 
 const mainBackgroundImage = "url(https://images.unsplash.com/photo-1587045525473-4861b1f9b5b2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D_)";
  "url(https://images.unsplash.com/photo-1595475884562-073c30d45670?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)";
@@ -123,20 +124,37 @@ export const Config = () => {
         sx={{ backgroundColor: "white" }}
       >
         <Toolbar>
-          <Typography
-            variant="h6"
-            sx={{
-              textAlign: "center",
-              mr: 0.5,
-              flexGrow: 1,
-              color: black,
-              fontFamily: "Dancing Script",
-              fontSize: { xs: "1.4rem", md: "2.5rem" },
-              fontWeight: "bold",
-            }}
-          >
-            {pageTitle}
-          </Typography>
+          <Stack sx={{flexDirection: "column", flex: 1}}>
+            <Typography
+              variant="h6"
+              sx={{
+                textAlign: "center",
+                mr: 0.5,
+                flexGrow: 1,
+                color: black,
+                fontFamily: "Dancing Script",
+                lineHeight: "2.5rem",
+                fontSize: { xs: "1.4rem", md: "2.5rem" },
+                fontWeight: "bold",
+              }}
+            >
+              {pageTitle}
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                textAlign: "center",
+                mr: 0.5,
+                flexGrow: 1,
+                color: black,
+                fontFamily: "Dancing Script",
+                fontSize: { xs: "0.7rem", md: "1.1rem" },
+                fontWeight: "bold",
+              }}
+            >
+              {secondaryTitle}
+            </Typography>
+          </Stack>
           <SocialMedia socialLinks={socialLinks} />
         </Toolbar>
       </AppBar>
@@ -144,8 +162,8 @@ export const Config = () => {
         position="static"
         sx={{ background: "white", borderTop: `${rem(2)} solid ${cream}` }}
       >
-        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Stack sx={{ flexDirection: { xs: "column", md: "row" } }}>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between", flexDirection:{xs: "column", md: "row"}, gap: {xs: 1, md: 0},my: {xs: 1.5, md: 0} }}>
+          <Stack sx={{ flexDirection: "row"}}>
             <Typography
               sx={{
                 color: black,
@@ -170,15 +188,16 @@ export const Config = () => {
               {number}
             </Typography>
           </Stack>
-          <Stack flexDirection="row" justifyContent="flex-end">
+          <Stack flexDirection="row" justifyContent="space-between">
             <LinkButton ref={pricingSectionRef} title="Pricing" />
+            <LinkButton ref={contactSectionRef} title="Opening Times" />
             <LinkButton ref={contactSectionRef} title="Contact Us" />
           </Stack>
         </Toolbar>
       </AppBar>
       <Box
         sx={{
-          height: { xs: rem(300), md: rem(500) },
+          height: { xs: rem(300), md: rem(470) },
           backgroundImage: mainBackgroundImage,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -229,6 +248,11 @@ export const Config = () => {
             color: black,
           }}
         >
+          {infoParagraphs.map((paragraph, index) => (
+            <Typography key={index} variant="body1" sx={{ mb: 1, textAlign: "center" }}>
+              {paragraph}
+            </Typography>
+          ))}
           <Typography variant="h4" sx={{ mb: 2 }}>
             Our Prices
           </Typography>
@@ -238,11 +262,7 @@ export const Config = () => {
               textAlign: "center",
             }}
           >
-            {infoParagraphs.map((paragraph, index) => (
-              <Typography key={index} variant="body1" sx={{ mb: 1 }}>
-                {paragraph}
-              </Typography>
-            ))}
+
             <Stack
               sx={{
                 width: { xs: "85%", md: rem(800) },

@@ -13,13 +13,13 @@ export const LinkButton = forwardRef<HTMLElement, LinkButtonProps>(
       sx={{
         color: blue,
         fontWeight: "bold",
-        fontSize: { xs: "0.8rem", md: "1.2rem" },
-        width: { xs: rem(100), md: rem(140) },
+        fontSize: { xs: "0.7rem", md: "1.2rem" },
+        width: { xs: "max-width", md: rem(160) },
         border: `${rem(2)} solid black`,
         borderRadius: 2,
         backgroundColor: "white",
-        ml: 2,
-        height: rem(40),
+        ml: {xs: 1, md: 2},
+        height: {xs: rem(30), md: rem(40)},
         textTransform: "capitalize",
       }}
       onClick={() => {
