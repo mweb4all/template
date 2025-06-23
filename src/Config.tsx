@@ -41,15 +41,15 @@ const tableData = {
 };
 
 const infoParagraphs = [
-  "We offer a variety of hair services tailored to your needs.",
+  "A friendly, vibrant York salon where style meets affordability—expert Hair & Beauty treatments in a relaxed, welcoming space.",
   "Our experienced stylists ensure you get the best treatment.",
-  "Visit us to experience top-notch hair care services.",
+  "We also have free parking!",
 ];
 
 const socialLinks: SocialMediaProps["socialLinks"] = {
-  facebook: "https://facebook.com",
-  twitter: "https://twitter.com",
-  instagram: "https://instagram.com",
+  facebook: "https://www.facebook.com/Harlandshairandbeauty/?locale=en_GB&checkpoint_src=1501092823525282",
+  twitter: null,
+  instagram: "https://www.instagram.com/__hairbyfran/",
 };
 
 const openingTimes = {
@@ -76,6 +76,8 @@ const carouselImages = [
   "/harlandsMain.jpg",
   "/harlandshair3.jpg",
 ];
+
+const number = "01904 785926";
 
 const googleMap =
   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2347.8939286995587!2d-1.1184421000000002!3d53.951391799999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48793120de033f53%3A0xf59f6c43edee450c!2s225A%20Hamilton%20Dr%20W%2C%20Acomb%2C%20York%20YO24%204PL!5e0!3m2!1sen!2suk!4v1745663389784!5m2!1sen!2suk";
@@ -157,7 +159,7 @@ export const Config = () => {
             </Typography>
             <Typography
               component="a"
-              href="tel:0987391238"
+              href={`tel:${number}`}
               sx={{
                 color: black,
                 fontWeight: "bold",
@@ -165,7 +167,7 @@ export const Config = () => {
                 textDecoration: "none",
               }}
             >
-              09873 91238
+              {number}
             </Typography>
           </Stack>
           <Stack flexDirection="row" justifyContent="flex-end">
@@ -301,7 +303,7 @@ export const Config = () => {
             my: 1,
             width: {xs: "80%", lg: "1200px"},
             aspectRatio: "2 / 0.8",
-            backgroundImage: `url(/harlandsCollage.jpg)`,
+            backgroundImage: `url(/template/harlandsCollage.jpg)`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

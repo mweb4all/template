@@ -5,7 +5,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import { grey } from "./Colours";
 
 export interface SocialMediaProps {
-  socialLinks: Record<"facebook" | "twitter" | "instagram", string>;
+  socialLinks: Record<"facebook" | "twitter" | "instagram", null | string>;
 }
 
 export const SocialMedia = ({ socialLinks }: SocialMediaProps) => {
@@ -14,17 +14,17 @@ export const SocialMedia = ({ socialLinks }: SocialMediaProps) => {
       flexDirection="row"
       sx={{ backgroundColor: "white", border: `3px solid ${grey}` }}
     >
-      {socialLinks.facebook && (
+      {socialLinks.facebook !== null && socialLinks.facebook && (
         <IconButton color="inherit" href={socialLinks.facebook} target="_blank">
           <FacebookIcon />
         </IconButton>
       )}
-      {socialLinks.twitter && (
+      {socialLinks.twitter !== null && socialLinks.twitter && (
         <IconButton color="inherit" href={socialLinks.twitter} target="_blank">
           <TwitterIcon />
         </IconButton>
       )}
-      {socialLinks.instagram && (
+      {socialLinks.instagram !== null && socialLinks.instagram && (
         <IconButton
           color="inherit"
           href={socialLinks.instagram}
